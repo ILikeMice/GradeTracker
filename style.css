@@ -1,0 +1,66 @@
+
+
+#main { 
+  margin: auto;
+  min-width: 550px;
+  width: 30vw;
+}
+
+.dropbtn {
+  min-width: 120px;
+  background-color: #0F3460;
+  color: white;
+  padding: 13px;
+  border: none;
+  cursor: pointer;
+  font-family: monospace;
+  border-radius: 5px 5px 0 0;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.content {
+  max-height: 0;
+  overflow: hidden;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px #00000033;
+  z-index: 1;
+  text-align: center;
+  border-radius: 0 0 5px 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.content div {
+  font-family: monospace;
+  font-weight: bold;
+  background-color: transparent;
+  padding-top: 5px;
+  text-decoration: none;
+  display: block;
+  
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+
+
+.content div:hover {background-color: #aaaaaa; }
+
+.dropdown:hover .content {
+  max-height: 110px;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #0F3460;
+}
