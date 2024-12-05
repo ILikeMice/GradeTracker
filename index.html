@@ -12,13 +12,11 @@
 
     <div id="main" >
         <div class="dropdown">
-            <button class="dropbtn">Subject</button>
-            <div class="content">
+            <div class="dropbtn">Subject</div>
+            <div id="subjectselector" class="content">
                 <div>All</div>
-                <div>Physics</div>
-                <div>Maths</div>
-                <div>IT</div>
-                <div>Add new...</div>
+                <div>Add or Edit...</div>
+                
             </div>
         </div>
 
@@ -27,8 +25,10 @@
         <h1 style="flex: none;">Subject Editor</h1>
         <div id="editarea">
             <div id="subjectlist">
-
+                <div class="subject"><input id="subjectinput" type="text" style="width: 70%;" placeholder="Add new Subject..."><button type="submit" id="addsubjectbtn" onclick="addsubject()">Add</button></div>
+                
             </div>
+            
         </div>
     </div>
     </div>

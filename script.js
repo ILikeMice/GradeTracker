@@ -23,6 +23,16 @@ chartdata = {
   }
 }
 
+
+function addsubject() {
+  let subject = document.getElementById("subjectinput").value
+  console.log(document.getElementsByName(subject))
+  if (document.getElementsByName(subject).length == 0) {
+    document.getElementById("subjectlist").insertAdjacentHTML("beforeend", "<div class='subject' name= "+ subject +">"+ subject +"</div>")
+    document.getElementById("subjectselector").insertAdjacentHTML("beforeend", "<div>"+ subject +"</div>")
+  }
+}
+
 chartdata.data.labels = ['Exam 1', 'Exam 2', 'Exam 3', 'Exam 4', 'Exam 5', 'Exam 6']
 chartdata.data.datasets = [{
   label: 'Subject 1',
