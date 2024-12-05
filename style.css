@@ -1,8 +1,11 @@
 
 
 #main { 
-  margin: auto;
-  min-width: 550px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 400px;
   width: 30vw;
 }
 
@@ -63,4 +66,35 @@
 
 .dropdown:hover .dropbtn {
   background-color: #0F3460;
+}
+
+#editor {
+  aspect-ratio: 578/358;
+  background-color: #0f3360b8;
+  text-align: center;
+  font-family: monospace;
+  color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  min-width: 350px;
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+}
+
+#editor #editarea { 
+  background-color: transparent;
+  flex: auto;
+  border-radius: 0 0 10px 10px;
+  padding: 3%;
+}
+
+#subjectlist {
+ background-color: white;
+ height: 100%;
+ width: 40%;
+ border-radius: 15px;
 }
