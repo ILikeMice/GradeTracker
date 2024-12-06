@@ -1,4 +1,8 @@
-
+:root {
+  --primary-color:#0F3460;
+  --secondary-color: #0d284e;
+  --tetriary-color: #04173e;
+}
 
 #main { 
   position: fixed;
@@ -10,8 +14,8 @@
 }
 
 .dropbtn {
-  min-width: 120px;
-  background-color: #0F3460;
+  width: 120px;
+  background-color: var(--primary-color);
   color: white;
   padding: 13px;
   border: none;
@@ -30,7 +34,7 @@
   overflow: hidden;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 120px;
+  width: 145px;
   box-shadow: 0px 8px 16px 0px #00000033;
   z-index: 1;
   text-align: center;
@@ -65,10 +69,12 @@
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #0F3460;
+  background-color: var(--primary-color);
 }
 
 #editor {
+  z-index: 2;
+  aspect-ratio: 565/394;
   background-color: #0f3360b8;
   text-align: center;
   font-family: monospace;
@@ -78,23 +84,24 @@
   left: 50%;
   border-radius: 10px;
   transform: translate(-50%, -50%);
-  min-width: 350px;
+  min-width: 500px;
   width: 20vw;
   height: 30vh;
-  display: flex;
-  flex-direction: column;
+  display: none;
 }
 
 #editor #editarea { 
   background-color: transparent;
-  flex: auto;
+  flex: none;
   border-radius: 0 0 10px 10px;
   padding: 3%;
   overflow: hidden;
+  display: flex;
+  height: calc(100% - 7em);
 }
 
 #subjectlist {
-  background-color: #0d284e;
+  background-color: var(--secondary-color);
   border-radius: 15px;
   width: 40%;
   height: 100%;
@@ -102,16 +109,20 @@
 }
 
 .subject {
-  background-color: #04173e;
+  background-color: var(--tetriary-color);
   padding: 10px;
-  border-bottom: 2px solid #0f3460;
+  border-bottom: 2px solid var(--primary-color);
   font-family: monospace;
   font-weight: bold;
   color: white;
+
+  -webkit-user-select: none;
+  -ms-user-select: none; 
+  user-select: none; 
 }
 
 .subject:hover {
-  background-color: #0f3460;
+  background-color: var(--primary-color);
 }
 
 #addsubjectbtn {
@@ -120,4 +131,119 @@
   background-color: transparent;
   color: white;
   font-family: monospace;
+}
+
+#exameditor {
+  height: 100%;
+  width: 57%;
+  margin-left: 3%;
+  background-color: transparent;
+}
+
+#subjectname {
+  background-color: var(--secondary-color);
+  width: 100%;
+  height: 20%;
+  border-radius:  15px 15px 0 0;
+}
+
+#subjectnameedit {
+  text-align: center;
+  background-color: transparent;
+  border-color: transparent;
+  font-family: monospace;
+  font-size: 1.5em;
+  color: white;
+  height: 90%;
+  width: 98%;
+}
+
+#examlist {
+  background-color: var(--secondary-color);
+  height:60%;
+  width: 100%;
+  overflow: scroll;
+}
+
+#addexam {
+  background-color: var(--secondary-color);
+  height: 20%;
+  width: 100%;
+  border-radius: 0 0 15px 15px;
+}
+
+.exam {
+  background-color: var(--tetriary-color);
+  width: 100%;
+  height: 30%;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 1em;
+  color: white;
+  border-radius: 15px;
+  border-bottom: 3px solid var(--primary-color);
+  align-items: center;
+}
+
+.examname {
+  width: 75%;
+  height: 90%;
+  text-align: center;
+  background-color: transparent;
+  border-color: transparent; 
+  font-family: monospace;
+  font-size: 1.5em;
+  color: white;
+}
+
+.examscore {
+  width: 15%;
+  height: 90%;
+  text-align: center;
+  background-color: transparent;
+  border-color: transparent; 
+  
+  border-left: 3px solid var(--primary-color);
+  font-family: monospace;
+  font-size: 1.5em;
+  color: white;
+}
+
+#addexamname {
+  height: 40%;
+  width: 40%;
+  background-color: transparent;
+  
+  border: 3px solid var(--primary-color);
+  border-radius: 10px;
+  border-bottom: none;
+
+  font-family: monospace;
+  font-size: 1em;
+  color: white;
+}
+
+#addexamscore {
+  height: 40%;
+  width: 40%;
+  background-color: transparent;
+   
+  border: 3px solid var(--primary-color);
+  border-radius: 10px;
+  border-bottom: none;
+
+  font-family: monospace;
+  font-size: 1em;
+  color: white;
+}
+
+#addexambtn {
+  width: 87%;
+  background-color: var(--secondary-color);
+  border: 3px solid var(--primary-color);
+  border-radius: 10px;
+
+  font-family: monospace;
+  font-size: 1em;
+  color: white;
 }

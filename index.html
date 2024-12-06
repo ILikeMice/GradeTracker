@@ -8,25 +8,37 @@
     
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color: #0A2647; ">
+<body style="background-color: #0A2647; overflow: scroll;">
 
     <div id="main" >
         <div class="dropdown">
             <div class="dropbtn">Subject</div>
             <div id="subjectselector" class="content">
-                <div>All</div>
-                <div>Add or Edit...</div>
+                <div onclick="drawchart('any', true)">All</div>
+                <div onclick="document.getElementById('editor').style.display = 'block'">Add or Edit...</div>
                 
             </div>
         </div>
 
     <canvas id="myChart"></canvas>
     <div id="editor">
-        <h1 style="flex: none;">Subject Editor</h1>
+        <h1 style="flex: none; font-size: 1.5em; width: 100%;">Subject Editor</h1>
         <div id="editarea">
-            <div id="subjectlist">
-                <div class="subject"><input id="subjectinput" type="text" style="width: 70%;" placeholder="Add new Subject..."><button type="submit" id="addsubjectbtn" onclick="addsubject()">Add</button></div>
+            <div id="subjectlist" >
+                <div class="subject"><input  id="subjectinput" type="text" style="width: 70%;" placeholder="Add new Subject..."><button type="submit" id="addsubjectbtn" onclick="addsubject()" >Add</button></div>
                 
+            </div> 
+
+            <div id="exameditor">
+                <div id="subjectname">
+                    <input disabled type="text" id="subjectnameedit" value="Select or Add a Subject!" oninput="editsubjectname(document.getElementById('subjectnameedit').value)">
+                </div>
+                <div id="examlist"></div>
+                <div id="addexam">
+                    <input id="addexamname" placeholder="Name" type="text">
+                    <input id="addexamscore" placeholder="Score (%)" type="number" min="0">
+                    <button id="addexambtn" onclick="addexam()">Add!</button>
+                </div>
             </div>
             
         </div>
