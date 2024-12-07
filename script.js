@@ -141,17 +141,73 @@ function addexam() {
     data[subject][exam] = score
     console.log(data)
 
-    document.getElementById("examlist").insertAdjacentHTML("beforeend", `
-                    <div class="exam">
-                        <input class="examname" type="text" value='${exam}'>
-                        <input class="examscore" type="number" min="0" value='${score}'>
-                    </div>`)
+    examDiv = document.createElement("div")
+    examDiv.className = "exam"
+    examDiv.id = subject + "_" + exam
+    
+    examNameInp = document.createElement("input")
+    examNameInp.className = "examname"
+    examNameInp.type = "text"
+    examNameInp.value = exam
+    examNameInp.oninput = () => editexamname(exam, examNameInp.value)
+
+    examScoreInp = document.createElement("input")
+    examScoreInp.className = "examscore"
+    examScoreInp.type = "number"
+    examScoreInp.min = "0"
+    examScoreInp.value = score
+    examScoreInp.oninput = () => editexamscore(exam, examScoreInp.value)
+
+
+    examDiv.appendChild(examNameInp)
+    examDiv.appendChild(examScoreInp)
+
+    document.getElementById("examlist").appendChild(examDiv)
 
     console.log(data)
   } else {
     alert("Please fill in all fields or select a Subject!")
   }
+
   drawchart(selectedsubject,false)
+}
+
+function editexamname(oldName, newName) {
+  newName = newName.trim();
+  if (newName == "" || data[selectedsubject].hasOwnProperty(newName)) {
+    alert("Invalid or duplicate exam name!");
+    document.getElementById(`${selectedsubject}_${oldName}`).querySelector(".examname").value = oldName;
+    return;
+  }
+
+  console.log(oldName, newName);
+  data[selectedsubject][newName] = data[selectedsubject][oldName];
+  delete data[selectedsubject][oldName];
+
+  let examDiv = document.getElementById(`${selectedsubject}_${oldName}`);
+  if (examDiv) {
+    examDiv.id = `${selectedsubject}_${newName}`;
+
+    let examNameInput = examDiv.querySelector(".examname");
+    if (examNameInput) {
+      examNameInput.value = newName;
+      examNameInput.setAttribute("oninput", `editexamname('${newName}', this.value)`);
+    }
+    let examScoreInput = examDiv.querySelector(".examscore");
+    if (examScoreInput) {
+      examScoreInput.setAttribute("oninput", `editexamscore('${newName}', this.value)`);
+    }
+  }
+
+  drawchart(selectedsubject, false);
+
+  console.log(data);
+}
+
+function editexamscore(exam, score) {
+  data[selectedsubject][exam] = score
+  console.log(data)
+  drawchart(selectedsubject, false)
 }
 
 function drawchart(subject, all) {
@@ -223,10 +279,47 @@ function exportdata() {
 
 }
 
-function importdata() {
-  
+function importdata(usrdata) {
+  const file = usrdata.files[0];
+  if (!file) {
+    alert("No file selected!");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(event) {
+    try {
+      const importedData = JSON.parse(event.target.result);
+      data = importedData;
+      console.log(data);
+      setSubjectList();
+      drawchart("any", true);
+    } catch (e) {
+      alert("Error reading JSON file: " + e.message);
+    }
+  };
+
+  reader.readAsText(file);
 }
 
+function setSubjectList() {
+  for (const subject in data) {
+    const subjectDiv = document.createElement("div")
+    subjectDiv.textContent = subject
+    subjectDiv.className = "subject"
+    subjectDiv.setAttribute("name", subject)
+    
+    const newDiv = document.createElement("div")
+    newDiv.setAttribute("name", subject)
+    newDiv.textContent = subject
+
+    newDiv.onclick = () => selectsubject(newDiv.getAttribute("name"));
+    subjectDiv.onclick = () => selectsubject(subjectDiv.getAttribute("name"));
+
+    document.getElementById("subjectlist").insertBefore(subjectDiv, document.getElementById("subjectlist").children[1])
+    document.getElementById("subjectselector").insertBefore(newDiv, document.getElementById("subjectselector").children[1])
+  }
+}
 
 
  drawchart() 

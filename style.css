@@ -249,8 +249,8 @@
 
 #filewrapper {
   background-color: var(--tetriary-color);
-  width: 15vw;
-  height: 2vw;
+  width: 150px;
+  height: 20px;
   display: flex;
   flex-direction: row;
 }
@@ -259,7 +259,7 @@
 
 #import, #export{
   flex-grow: 1;
-  font-size: 0.7vw;
+  text-align: center;
   background-color: transparent;
   border: none;
   font-family: monospace;
