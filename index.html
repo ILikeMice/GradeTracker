@@ -8,8 +8,12 @@
     
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color: #0A2647; overflow: scroll;">
-
+<body style="background-color: #0A2647; overflow: scroll;" onload="resetsubjname()">
+    <div id="filewrapper">
+        <button id="import" onclick="importdata()">Import Data...</button>
+        <button id="export" onclick="exportdata()">Export Data...</button>
+    </div>
+    
     <div id="main" >
         <div class="dropdown">
             <div class="dropbtn">Subject</div>

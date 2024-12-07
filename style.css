@@ -9,8 +9,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  min-width: 400px;
-  width: 30vw;
+  min-width: 550px;
+  width: 50vw;
 }
 
 .dropbtn {
@@ -86,7 +86,6 @@
   transform: translate(-50%, -50%);
   min-width: 500px;
   width: 20vw;
-  height: 30vh;
   display: none;
 }
 
@@ -246,4 +245,31 @@
   font-family: monospace;
   font-size: 1em;
   color: white;
+}
+
+#filewrapper {
+  background-color: var(--tetriary-color);
+  width: 15vw;
+  height: 2vw;
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+#import, #export{
+  flex-grow: 1;
+  font-size: 0.7vw;
+  background-color: transparent;
+  border: none;
+  font-family: monospace;
+  color: white;
+}
+
+#export {
+  border-left: 2px solid var(--primary-color);
+}
+
+#import:hover, #export:hover {
+  background-color: var(--primary-color);
 }

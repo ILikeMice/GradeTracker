@@ -25,12 +25,24 @@ let chartdata = {
 let selectedsubject = ""
 var chart;
 
+function resetsubjname() {
+  subjectnameedit = document.getElementById("subjectnameedit")
+  subjectnameedit.disabled = true
+  subjectnameedit.value = "Select or add a Subject!"
+}
 
 window.addEventListener("mouseup", function (event) {
   let editor = document.getElementById("editor")
   console.log(event.target.parentNode)
   if (event.target != editor && event.target.parentNode != editor && editor.contains(event.target) == false) {
     editor.style.display = "none"
+  }
+})
+
+window.addEventListener("keydown", function (event) {
+  console.log(event.code)
+  if (event.code == "Escape") {
+    document.getElementById("editor").style.display = "none"
   }
 })
 
@@ -57,7 +69,11 @@ function addsubject() {
 
     document.getElementById("subjectlist").insertBefore(subjectDiv, document.getElementById("subjectlist").children[1])
     document.getElementById("subjectselector").insertBefore(newDiv, document.getElementById("subjectselector").children[1])
+    selectsubject(subject)
+  } else {
+    alert("Subject name cannot be empty!")
   }
+  
 }
 
 function selectsubject(subject) {
@@ -135,6 +151,7 @@ function addexam() {
   } else {
     alert("Please fill in all fields or select a Subject!")
   }
+  drawchart(selectedsubject,false)
 }
 
 function drawchart(subject, all) {
@@ -162,18 +179,18 @@ function drawchart(subject, all) {
     let labels = []
     maxcount = 0
     for (const subject in data) {
-
-      if (Object.keys(subject).length > maxcount) {
-        maxcount = Object.keys(subject).length
-      }
+      count = 0
 
       let label = subject
       let scores = []
 
       for (const exam in data[subject]) {
         scores.push(data[subject][exam])
+        count += 1
       }
-
+      if (count>maxcount) {
+        maxcount = count
+      }
       datasets.push({
         label: label,
         data: scores,
@@ -181,8 +198,8 @@ function drawchart(subject, all) {
       })
     } 
 
-    for (i = 1; i < maxcount; i++) {
-      labels.push(`Exam ${i}`)
+    for (i = 0; i < maxcount; i++) {
+      labels.push(`Exam ${i+1}`)
     }
     
     chartdata.data.labels = labels
@@ -194,7 +211,21 @@ function drawchart(subject, all) {
   
 } 
 
+function exportdata() {
+  const blob = new Blob([JSON.stringify(data, null, 4)], {"type": "application/json"})
 
+  const link = document.createElement("a")
+  link.href = URL.createObjectURL(blob)
+  link.download = "GradeTrackerExport"
+
+  document.body.appendChild(link)
+  link.click()
+
+}
+
+function importdata() {
+  
+}
 
 
 
