@@ -64,6 +64,11 @@
   overflow-y: scroll;
 }
 
+.dropdown:focus .content {
+  max-height: 110px;
+  overflow-y: scroll;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -124,9 +129,16 @@
   background-color: var(--primary-color);
 }
 
+#subjectinput {
+  width: 70%;
+  height: 50%;
+  font-family: monospace;
+}
+
 #addsubjectbtn {
   height: 100%;
   width: 20%;
+  
   background-color: transparent;
   color: white;
   font-family: monospace;
@@ -151,7 +163,7 @@
   background-color: transparent;
   border-color: transparent;
   font-family: monospace;
-  font-size: 1.5em;
+  font-size: 90%;
   color: white;
   height: 90%;
   width: 98%;
@@ -182,9 +194,14 @@
   border-radius: 15px;
   border-bottom: 3px solid var(--primary-color);
   align-items: center;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: flex-start;
 }
 
 .examname {
+  
   width: 75%;
   height: 90%;
   text-align: center;
@@ -196,15 +213,15 @@
 }
 
 .examscore {
-  width: 15%;
+  width: 25%;
   height: 90%;
-  text-align: center;
   background-color: transparent;
   border-color: transparent; 
   
   border-left: 3px solid var(--primary-color);
   font-family: monospace;
   font-size: 1.5em;
+  text-align: center;
   color: white;
 }
 
@@ -248,8 +265,9 @@
 }
 
 #filewrapper {
+  position: fixed;
   background-color: var(--tetriary-color);
-  width: 150px;
+  width: 225px;
   height: 20px;
   display: flex;
   flex-direction: row;
@@ -257,7 +275,7 @@
 
 
 
-#import, #export{
+#import, #export, #randomize{
   flex-grow: 1;
   text-align: center;
   background-color: transparent;
@@ -272,4 +290,56 @@
 
 #import:hover, #export:hover {
   background-color: var(--primary-color);
+}
+
+#catwrapper {
+  display: flex;
+  justify-content: flex-start;
+  position: fixed;
+  align-items: center;
+  top: 8%;
+  left: 0;
+}
+
+#catopener {
+  position: relative;
+  height: 100px;
+  width: 30px;
+  border-radius:  0 15px 15px 0;
+  background-color: var(--tetriary-color);
+  
+
+  font-family: monospace;
+  font-weight: bold;
+  color: white;
+  writing-mode: vertical-rl;
+  text-align: center;
+  align-content: end;
+  font-size: 150%;
+
+  -webkit-user-select: none;
+  -ms-user-select: none; 
+  user-select: none; 
+}
+
+#catimg {
+  width: 0px;
+  transition: 0.5s ease-in-out;
+  border-radius: 15px;
+}
+
+#catwrapper:hover #catimg {
+  width: 300px;
+}
+
+@media (max-width: 600px) {
+  #main {
+   min-width: 90vw;
+   top: 40%;
+  }
+
+  #editor {
+    
+    min-width: 90vw;
+  }
 }

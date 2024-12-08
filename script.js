@@ -46,6 +46,12 @@ window.addEventListener("keydown", function (event) {
   }
 })
 
+function showdropdown() {
+  let subjecselector = document.getElementById("subjectselector")
+  subjecselector.style.maxHeight = "110px"
+  subjecselector.style.overflowY = "scroll"
+}
+
 function addsubject() {
   let subject = document.getElementById("subjectinput").value
   console.log(document.getElementsByName(subject))
@@ -82,12 +88,32 @@ function selectsubject(subject) {
   document.getElementById("subjectnameedit").disabled = false;
   document.getElementById("examlist").innerHTML = "";
   
-  for (const score in data[subject]) {
-    document.getElementById("examlist").insertAdjacentHTML("beforeend", `
-                    <div class="exam">
-                        <input class="examname" type="text" value='${score}'>
-                        <input class="examscore" type="number" min="0" value='${data[subject][score]}'>
-                    </div>`)
+  for (const exam in data[subject]) {
+    let score = data[subject][exam]
+    console.log(data)
+
+    examDiv = document.createElement("div")
+    examDiv.className = "exam"
+    examDiv.id = subject + "_" + exam
+    
+    examNameInp = document.createElement("input")
+    examNameInp.className = "examname"
+    examNameInp.type = "text"
+    examNameInp.value = exam
+    examNameInp.oninput = () => editexamname(exam, document.getElementById(`${subject}_${exam}`).querySelector(".examname").value)
+
+    examScoreInp = document.createElement("input")
+    examScoreInp.className = "examscore"
+    examScoreInp.type = "number"
+    examScoreInp.min = "0"
+    examScoreInp.value = score
+    examScoreInp.oninput = () => editexamscore(exam, document.getElementById(`${subject}_${exam}`).querySelector(".examscore").value)
+
+
+    examDiv.appendChild(examNameInp)
+    examDiv.appendChild(examScoreInp)
+
+    document.getElementById("examlist").appendChild(examDiv)
   }
   console.log(selectedsubject)
   drawchart(subject, false)
@@ -95,7 +121,8 @@ function selectsubject(subject) {
 
 function editsubjectname(newName) {
   newName = newName.trim();
-  if (newName === "" || data.hasOwnProperty(newName)) {
+  if (newName == "" || data.hasOwnProperty(newName)) {
+    console.log(data.hasOwnProperty(newName), '"' + newName + '"')
     alert("Invalid or duplicate subject name!");
     return;
   }
@@ -180,10 +207,21 @@ function editexamname(oldName, newName) {
     return;
   }
 
-  console.log(oldName, newName);
-  data[selectedsubject][newName] = data[selectedsubject][oldName];
-  delete data[selectedsubject][oldName];
+  console.log(oldName, newName);  
+  let olddata = data[selectedsubject]
+  data[selectedsubject] = {}
+  console.log(olddata, data)
+  for (exam in olddata) {
+    console.log(exam)
+    if (exam == oldName) {
+      data[selectedsubject][newName] = olddata[oldName]
+      delete data[selectedsubject][oldName]
+    } else {
+      data[selectedsubject][exam] = olddata[exam]
+    }
 
+  }
+  
   let examDiv = document.getElementById(`${selectedsubject}_${oldName}`);
   if (examDiv) {
     examDiv.id = `${selectedsubject}_${newName}`;
@@ -205,6 +243,7 @@ function editexamname(oldName, newName) {
 }
 
 function editexamscore(exam, score) {
+  console.log(selectedsubject, exam, score)
   data[selectedsubject][exam] = score
   console.log(data)
   drawchart(selectedsubject, false)
@@ -227,6 +266,7 @@ function drawchart(subject, all) {
     chartdata.data.datasets = [{
       label: label,
       data: scores,
+      cubicInterpolationMode: 'monotone',
       borderWidth: 1
     }]
   } else {
@@ -250,6 +290,7 @@ function drawchart(subject, all) {
       datasets.push({
         label: label,
         data: scores,
+        cubicInterpolationMode: 'monotone',
         borderWidth: 1
       })
     } 
@@ -280,22 +321,23 @@ function exportdata() {
 }
 
 function importdata(usrdata) {
-  const file = usrdata.files[0];
+  const file = usrdata.files[0]
   if (!file) {
-    alert("No file selected!");
+    alert("No file selected!")
     return;
   }
 
   const reader = new FileReader();
   reader.onload = function(event) {
     try {
-      const importedData = JSON.parse(event.target.result);
-      data = importedData;
-      console.log(data);
-      setSubjectList();
-      drawchart("any", true);
+      data = {};
+      const importedData = JSON.parse(event.target.result)
+      data = importedData
+      console.log(data)
+      setSubjectList()
+      drawchart("any", true)
     } catch (e) {
-      alert("Error reading JSON file: " + e.message);
+      alert("Error reading JSON file: " + e.message)
     }
   };
 
@@ -303,6 +345,9 @@ function importdata(usrdata) {
 }
 
 function setSubjectList() {
+  document.getElementById("subjectlist").innerHTML = `<div class="subject"><input  id="subjectinput" type="text"   placeholder="Add new Subject..."><button type="submit" id="addsubjectbtn" onclick="addsubject()" >Add</button></div>`
+  document.getElementById("subjectselector").innerHTML = `<div onclick="drawchart('any', true)">All</div>
+                <div onclick="document.getElementById('editor').style.display = 'block'">Add or Edit...</div>`
   for (const subject in data) {
     const subjectDiv = document.createElement("div")
     subjectDiv.textContent = subject
@@ -321,6 +366,25 @@ function setSubjectList() {
   }
 }
 
+function randomize() {
+  let subjects = ["Math", "English", "Spanish", "French", "Latin", "Physics", "Biology", "PE", "History", "Geography", "Art", "Music", "Chemistry", "IT", "Philosophy", "Religion"]
+  data = {}
+  
+  console.log(subjects)
+  for (let i=Math.floor(Math.random()*subjects.length); i < subjects.length; i++) {
+    let subject = subjects[i]
+    console.log("i", i)
+    subjects.splice(i,1)
+    data[subject] = {}
+    for (let b = 1; b <= Math.floor(Math.random()*10 + 5); b++) {
+      data[subject][`Exam ${b}`] = Math.floor(Math.random()*100)
+      console.log("Exam", b)
+    }
+  }
+  setSubjectList()
+  drawchart("any", true)
+  console.log(data)
+}
 
  drawchart() 
 
