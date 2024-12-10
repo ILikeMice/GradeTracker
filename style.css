@@ -11,6 +11,7 @@
   transform: translate(-50%, -50%);
   min-width: 550px;
   width: 50vw;
+  
 }
 
 .dropbtn {
@@ -284,7 +285,7 @@
   color: white;
 }
 
-#export {
+#export, #randomize {
   border-left: 2px solid var(--primary-color);
 }
 
@@ -336,10 +337,39 @@
   #main {
    min-width: 90vw;
    top: 40%;
+   max-height: 50vh;
   }
 
   #editor {
     
     min-width: 90vw;
   }
+
+  #catwrapper {
+    display: unset;
+    top: unset;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    align-content: center;
+  }
+
+  #catopener {
+    
+    height: 30px;
+    width: 100px;
+    writing-mode:unset;
+    border-radius: 15px 15px 0 0;
+  }
+
+  #catimg {
+    display: block;
+    width: unset;
+    height: 0px;
+  }
+
+  #catwrapper:hover #catimg {
+    height: 25vh;
+  }
+  
 }

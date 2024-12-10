@@ -5,6 +5,7 @@ let chartdata = {
     
   },
   options: {
+    
       plugins: {
           legend: {
               labels: {
@@ -24,6 +25,10 @@ let chartdata = {
 }
 let selectedsubject = ""
 var chart;
+
+if (window.innerWidth <= 600) {
+  chartdata.options.maintainAspectRatio = false
+}
 
 function resetsubjname() {
   subjectnameedit = document.getElementById("subjectnameedit")
