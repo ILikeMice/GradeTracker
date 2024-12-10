@@ -36,6 +36,10 @@ function resetsubjname() {
   subjectnameedit.value = "Select or add a Subject!"
 }
 
+document.getElementById("import").addEventListener("click", function() {
+  document.getElementById("fileinput").value = null
+})
+
 window.addEventListener("mouseup", function (event) {
   let editor = document.getElementById("editor")
   console.log(event.target.parentNode)
@@ -121,6 +125,7 @@ function selectsubject(subject) {
     document.getElementById("examlist").appendChild(examDiv)
   }
   console.log(selectedsubject)
+  console.log(data)
   drawchart(subject, false)
 }
 
@@ -333,7 +338,7 @@ function importdata(usrdata) {
     alert("No file selected!")
     return;
   }
-
+  console.log("importing")
   const reader = new FileReader();
   reader.onload = function(event) {
     try {
@@ -341,6 +346,7 @@ function importdata(usrdata) {
       const importedData = JSON.parse(event.target.result)
       data = importedData
       console.log(data)
+      savedata()
       setSubjectList()
       drawchart("any", true)
     } catch (e) {
@@ -417,7 +423,7 @@ function loaddata() {
 
 function reset() {
   data = {}
-  document.cookie = "data={}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/"
+  savedata()
   drawchart("any", true)
 }
 
