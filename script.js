@@ -1,4 +1,4 @@
-let data = {}
+let data = getdata()
 let chartdata = {
   type: 'line',
   data: {
@@ -255,6 +255,7 @@ function editexamscore(exam, score) {
 }
 
 function drawchart(subject, all) {
+  
   try {chart.destroy()} catch {}
   if (!all) {
 
@@ -307,7 +308,8 @@ function drawchart(subject, all) {
     chartdata.data.labels = labels
     chartdata.data.datasets = datasets
   }
-  
+
+  savedata()
   const ctx = document.getElementById('myChart');
   chart = new Chart(ctx, chartdata);
   
@@ -391,5 +393,34 @@ function randomize() {
   console.log(data)
 }
 
- drawchart() 
+function savedata() {
+  document.cookie = "data="+ JSON.stringify(data) + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/"
+
+}
+
+function getdata() {
+  let cookies = document.cookie.split(";")
+  for (let cookie of cookies) {
+    let [key, value] = cookie.trim().split("=")
+    if (key == "data") {
+      return JSON.parse(value)
+    }
+  }
+}
+
+function loaddata() {
+  data = getdata()
+  console.log("data", data)
+  setSubjectList()
+  drawchart("any", true)
+}
+
+function reset() {
+  data = {}
+  document.cookie = "data={}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/"
+  drawchart("any", true)
+}
+
+
+drawchart() 
 

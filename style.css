@@ -268,7 +268,7 @@
 #filewrapper {
   position: fixed;
   background-color: var(--tetriary-color);
-  width: 225px;
+  width: 300px;
   height: 20px;
   display: flex;
   flex-direction: row;
@@ -276,7 +276,7 @@
 
 
 
-#import, #export, #randomize{
+#import, #export, #randomize, #reset{
   flex-grow: 1;
   text-align: center;
   background-color: transparent;
@@ -285,7 +285,7 @@
   color: white;
 }
 
-#export, #randomize {
+#export, #randomize, #reset {
   border-left: 2px solid var(--primary-color);
 }
 
@@ -303,6 +303,7 @@
 }
 
 #catopener {
+  order: 2;
   position: relative;
   height: 100px;
   width: 30px;
@@ -324,6 +325,7 @@
 }
 
 #catimg {
+  order: 1;
   width: 0px;
   transition: 0.5s ease-in-out;
   border-radius: 15px;
@@ -355,7 +357,7 @@
   }
 
   #catopener {
-    
+    order: 1;
     height: 30px;
     width: 100px;
     writing-mode:unset;
@@ -363,6 +365,7 @@
   }
 
   #catimg {
+    order: 2;
     display: block;
     width: unset;
     height: 0px;
@@ -373,3 +376,5 @@
   }
   
 }
+
+

@@ -8,12 +8,13 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color: #0A2647; overflow: scroll;" onload="resetsubjname()">
+<body style="background-color: #0A2647; overflow: scroll;" onload="resetsubjname(); loaddata()">
     
     <div id="filewrapper">
         <button id="import" onclick="document.getElementById('fileinput').click()">Import</button>
         <button id="export" onclick="exportdata()">Export</button>
         <button id="randomize" onclick="randomize()">Randomize</button>
+        <button id="reset" onclick="reset()">Reset</button>
         <input type="file" id="fileinput" style="display: none;" onchange="importdata(this)" accept="application/json">
     </div>
     <div id="catwrapper">
