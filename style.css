@@ -1,4 +1,6 @@
 :root {
+  --background-color: #0A2647;
+  --text-color: white;
   --primary-color:#0F3460;
   --secondary-color: #0d284e;
   --tetriary-color: #04173e;
@@ -14,10 +16,14 @@
   
 }
 
+body {
+  background-color: var(--background-color);
+}
+
 .dropbtn {
   width: 120px;
   background-color: var(--primary-color);
-  color: white;
+  color: var(--text-color);
   padding: 13px;
   border: none;
   cursor: pointer;
@@ -61,7 +67,7 @@
 .content div:hover {background-color: #aaaaaa; }
 
 .dropdown:hover .content {
-  max-height: 110px;
+  max-height: 170px;
   overflow-y: scroll;
 }
 
@@ -78,13 +84,13 @@
   background-color: var(--primary-color);
 }
 
-#editor {
+#editor, #coloreditor {
   z-index: 2;
   aspect-ratio: 565/394;
   background-color: #0f3360b8;
   text-align: center;
   font-family: monospace;
-  color: white;
+  color: var(--text-color);
   position: fixed;
   top: 50%;
   left: 50%;
@@ -105,6 +111,17 @@
   height: calc(100% - 7em);
 }
 
+#coloreditor #coloreditarea {
+  background-color: transparent;
+  flex: none;
+  border-radius: 0 0 10px 10px;
+  padding: 3%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 7em);
+}
+
 #subjectlist {
   background-color: var(--secondary-color);
   border-radius: 15px;
@@ -119,7 +136,7 @@
   border-bottom: 2px solid var(--primary-color);
   font-family: monospace;
   font-weight: bold;
-  color: white;
+  color: var(--text-color);
 
   -webkit-user-select: none;
   -ms-user-select: none; 
@@ -141,7 +158,7 @@
   width: 20%;
   
   background-color: transparent;
-  color: white;
+  color: var(--text-color);
   font-family: monospace;
 }
 
@@ -165,7 +182,7 @@
   border-color: transparent;
   font-family: monospace;
   font-size: 90%;
-  color: white;
+  color: var(--text-color);
   height: 90%;
   width: 98%;
 }
@@ -191,7 +208,7 @@
   font-family: monospace;
   font-weight: bold;
   font-size: 1em;
-  color: white;
+  color: var(--text-color);
   border-radius: 15px;
   border-bottom: 3px solid var(--primary-color);
   align-items: center;
@@ -210,7 +227,7 @@
   border-color: transparent; 
   font-family: monospace;
   font-size: 1.5em;
-  color: white;
+  color: var(--text-color);
 }
 
 .examscore {
@@ -223,7 +240,7 @@
   font-family: monospace;
   font-size: 1.5em;
   text-align: center;
-  color: white;
+  color: var(--text-color);
 }
 
 #addexamname {
@@ -237,7 +254,7 @@
 
   font-family: monospace;
   font-size: 1em;
-  color: white;
+  color: var(--text-color);
 }
 
 #addexamscore {
@@ -251,7 +268,7 @@
 
   font-family: monospace;
   font-size: 1em;
-  color: white;
+  color: var(--text-color);
 }
 
 #addexambtn {
@@ -262,13 +279,13 @@
 
   font-family: monospace;
   font-size: 1em;
-  color: white;
+  color: var(--text-color);
 }
 
 #filewrapper {
   position: fixed;
   background-color: var(--tetriary-color);
-  width: 300px;
+  width: 375px;
   height: 20px;
   display: flex;
   flex-direction: row;
@@ -276,17 +293,18 @@
 
 
 
-#import, #export, #randomize, #reset{
+#import, #export, #randomize, #reset, #themebtn{
   flex-grow: 1;
   text-align: center;
   background-color: transparent;
   border: none;
+  border-left: 2px solid var(--primary-color);
   font-family: monospace;
-  color: white;
+  color: var(--text-color);
 }
 
-#export, #randomize, #reset {
-  border-left: 2px solid var(--primary-color);
+#import {
+  border: none
 }
 
 #import:hover, #export:hover {
@@ -313,7 +331,7 @@
 
   font-family: monospace;
   font-weight: bold;
-  color: white;
+  color: var(--text-color);
   writing-mode: vertical-rl;
   text-align: center;
   align-content: end;
@@ -335,6 +353,41 @@
   width: 300px;
 }
 
+.colordiv {
+  background-color: transparent;
+  width: 50%;
+  height: calc((100 / 6) * 1%);
+
+  display: flex;
+  flex-direction: row;
+}
+
+.colortop {
+  border-radius: 10px 10px 0 0;
+}
+
+.colorbottom {
+  border-radius: 0 0 10px 10px;
+  border: none;
+}
+
+.colorname{
+  width: 80%;
+  height: 100%;
+  background-color: white;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px 0 0 10px;
+}
+
+
+.colorpicker {
+  width: 20%;
+  height: 100%;
+  background-color: white;
+  border: 2px solid var(--primary-color);
+  border-radius: 0 10px 10px 0;
+}
+
 @media (max-width: 600px) {
   #main {
    min-width: 90vw;
@@ -342,7 +395,7 @@
    max-height: 50vh;
   }
 
-  #editor {
+  #editor, #coloreditor {
     
     min-width: 90vw;
   }

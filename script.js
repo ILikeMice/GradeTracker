@@ -36,15 +36,19 @@ function resetsubjname() {
   subjectnameedit.value = "Select or add a Subject!"
 }
 
+
+
 document.getElementById("import").addEventListener("click", function() {
   document.getElementById("fileinput").value = null
 })
 
-window.addEventListener("mouseup", function (event) {
+window.addEventListener("mousedown", function (event) {
   let editor = document.getElementById("editor")
+  let coloreditor = this.document.getElementById("coloreditor")
   console.log(event.target.parentNode)
-  if (event.target != editor && event.target.parentNode != editor && editor.contains(event.target) == false) {
+  if (event.target != editor && event.target.parentNode != editor && editor.contains(event.target) == false && event.target != coloreditor && event.target.parentNode != coloreditor && coloreditor.contains(event.target) == false) {
     editor.style.display = "none"
+    coloreditor.style.display = "none"
   }
 })
 
@@ -424,6 +428,7 @@ function loaddata() {
 function reset() {
   data = {}
   savedata()
+  setSubjectList()
   drawchart("any", true)
 }
 

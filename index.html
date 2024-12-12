@@ -8,13 +8,14 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color: #0A2647; overflow: scroll;" onload="resetsubjname(); loaddata()">
+<body style="overflow: scroll;" onload="resetsubjname(); loaddata()">
     
     <div id="filewrapper">
         <button id="import" onclick="document.getElementById('fileinput').click()">Import</button>
         <button id="export" onclick="exportdata()">Export</button>
         <button id="randomize" onclick="randomize()">Randomize</button>
         <button id="reset" onclick="reset()">Reset</button>
+        <button id="themebtn" onclick="document.getElementById('coloreditor').style.display = 'block'">Theme...</button> 
         <input type="file" id="fileinput" style="display: none;" onchange="importdata(this)" accept="application/json">
     </div>
     <div id="catwrapper">
@@ -23,11 +24,11 @@
         
         
     </div>
-    
+
    
     <div id="main" >
         <div class="dropdown">
-            <div class="dropbtn" onclick="">Subject</div>
+            <div class="dropbtn" >Subject</div>
             <div id="subjectselector" class="content">
                 <div onclick="drawchart('any', true)">All</div>
                 <div onclick="document.getElementById('editor').style.display = 'block'">Add or Edit...</div>
@@ -56,6 +57,20 @@
                 </div>
             </div>
             
+        </div>
+    </div>
+
+    <div id="coloreditor">
+        <h1 style="flex: none; font-size: 1.5em; width: 100%;">Theme Editor</h1>
+        <div id="coloreditarea">
+            <div class="colordiv colortop">
+            <div class="colorname"></div>
+            <div class="colorpicker"></div></div>
+            <div class="colordiv"></div>
+            <div class="colordiv"></div>
+            <div class="colordiv"></div>
+            <div class="colordiv"></div>
+            <div class="colordiv colorbottom"></div>
         </div>
     </div>
     </div>
