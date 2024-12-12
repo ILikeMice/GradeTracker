@@ -1,6 +1,8 @@
+![Screenshot 2024-12-10 224538](https://github.com/user-attachments/assets/9c3c32d3-0ba4-4817-93f4-d69ab1c44c82)
 # GradeTracker
 
 Web app that allows you to track and manage your grades for subjects and exams. Add, edit and delete Subjects and Exams and see them in the graph! Also takes a JSON file as import or exports one!
+- [Official Website](https://grade-tracker-six.vercel.app)
 
 ## Features
 
@@ -11,13 +13,13 @@ Web app that allows you to track and manage your grades for subjects and exams. 
 - Generate random data for testing
 - Works great on both mobile and desktop
 
-
 ## Tech Stack
 
 - HTML
 - CSS
 - JavaScript
-- Chart.js
+- [Chart.js](https://chartjs.org)
+
 
 ## How to Use
 
@@ -55,3 +57,4 @@ Web app that allows you to track and manage your grades for subjects and exams. 
     <br><br><br>
 
 - Recommended use on mobile is sideways to see the graph better, but vertical mode is just as functional!
+  
