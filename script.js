@@ -1,4 +1,8 @@
-let data = getdata()
+try {
+  let data = getdata()
+} catch {
+  let data = {}
+}
 let chartdata = {
   type: 'line',
   data: {

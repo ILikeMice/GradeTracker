@@ -111,17 +111,6 @@ body {
   height: calc(100% - 7em);
 }
 
-#coloreditor #coloreditarea {
-  background-color: transparent;
-  flex: none;
-  border-radius: 0 0 10px 10px;
-  padding: 3%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  height: calc(100% - 7em);
-}
-
 #subjectlist {
   background-color: var(--secondary-color);
   border-radius: 15px;
@@ -353,10 +342,28 @@ body {
   width: 300px;
 }
 
+#coloreditor #coloreditarea {
+  background-color: transparent;
+  flex: none;
+  border-radius: 0 0 10px 10px;
+  padding: 3%;
+  overflow: hidden;
+  height: calc(100% - 7em);
+}
+
+
+.colordivtwice {
+  width: 100%;
+  height: calc((100 / 6) * 1%);
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5%;
+}
+
 .colordiv {
   background-color: transparent;
   width: 50%;
-  height: calc((100 / 6) * 1%);
+  height: 100%;
 
   display: flex;
   flex-direction: row;
@@ -374,18 +381,23 @@ body {
 .colorname{
   width: 80%;
   height: 100%;
-  background-color: white;
-  border: 2px solid var(--primary-color);
+  
+  background-color: var(--secondary-color);
+  border-right: 2px solid var(--primary-color);
   border-radius: 10px 0 0 10px;
+  
 }
 
 
 .colorpicker {
   width: 20%;
   height: 100%;
-  background-color: white;
-  border: 2px solid var(--primary-color);
+  border: none;
+  background-color: var(--secondary-color);
+  border-left: 2px solid var(--primary-color);
+  border-right: 2px transparent;
   border-radius: 0 10px 10px 0;
+  
 }
 
 @media (max-width: 600px) {
