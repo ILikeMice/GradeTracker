@@ -84,7 +84,7 @@ body {
   background-color: var(--primary-color);
 }
 
-#editor, #coloreditor {
+#editor {
   z-index: 2;
   aspect-ratio: 565/394;
   background-color: #0f3360b8;
@@ -99,6 +99,24 @@ body {
   min-width: 500px;
   width: 20vw;
   display: none;
+}
+
+#coloreditor {
+  z-index: 2;
+  aspect-ratio: 565/270;
+  background-color: #0f3360b8;
+  text-align: center;
+  font-family: monospace;
+  color: var(--text-color);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  min-width: 500px;
+  width: 20vw;
+  display: none;
+
 }
 
 #editor #editarea { 
@@ -354,7 +372,7 @@ body {
 
 .colordivtwice {
   width: 100%;
-  height: calc((100 / 6) * 1%);
+  height: calc((100 / 4) * 1%);
   display: flex;
   flex-direction: row;
   margin-bottom: 5%;
@@ -369,23 +387,24 @@ body {
   flex-direction: row;
 }
 
-.colortop {
-  border-radius: 10px 10px 0 0;
-}
-
-.colorbottom {
-  border-radius: 0 0 10px 10px;
-  border: none;
-}
 
 .colorname{
   width: 80%;
   height: 100%;
   
   background-color: var(--secondary-color);
+  border: none;
   border-right: 2px solid var(--primary-color);
+  margin-left: 2px;
   border-radius: 10px 0 0 10px;
   
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: monospace;
+  color: var(--text-color);
+  font-size: 2em;
 }
 
 
@@ -394,10 +413,38 @@ body {
   height: 100%;
   border: none;
   background-color: var(--secondary-color);
-  border-left: 2px solid var(--primary-color);
-  border-right: 2px transparent;
+  margin-right: 2px;
+  border-left: 2px transparent;
   border-radius: 0 10px 10px 0;
   
+}
+
+.colorbtn {
+  width: 100%;
+  margin-left: 2px;
+  margin-right: 2px;
+  
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 10px;
+
+  font-family: monospace;
+  color: var(--text-color);
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.colorbtn:hover {
+  background-color: var(--primary-color);
+}
+
+.colorinput {
+  background-color: transparent;
+  height: 90%;
+  width: 90%;
+  border: none;
+  border-radius: 10px;
 }
 
 @media (max-width: 600px) {
