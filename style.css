@@ -476,6 +476,10 @@ body {
     min-width: 90vw;
   }
 
+  #coloreditor {
+    aspect-ratio: 565/500;
+  }
+
   #catwrapper {
     display: unset;
     top: unset;
