@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="overflow: scroll;" onload="resetsubjname(); loaddata()">
+<body style="overflow: scroll;" onload="resetsubjname(); loaddata(); resetcolor();">
     
     <div id="filewrapper">
         <button id="import" onclick="document.getElementById('fileinput').click()">Import</button>
@@ -68,32 +68,32 @@
                     <div class="colorname">
                         Background
                     </div>
-                    <div class="colorpicker"><input class="colorinput" type="color"></div>
+                    <div class="colorpicker"><div><input id="background-color" class="colorinput" type="color" onchange="changecolor(this.id)"></div></div>
                 </div>
                 <div class="colordiv">
                     <div class="colorname">Text</div>
-                    <div class="colorpicker"></div>
+                    <div class="colorpicker"><div><input id="text-color" class="colorinput" type="color" onchange="changecolor(this.id)"></div></div>
                 </div>
             </div>
             <div class="colordivtwice">
                 <div class="colordiv">
                     <div class="colorname">Primary</div>
-                    <div class="colorpicker"></div>
+                    <div class="colorpicker"><div><input id="primary-color" class="colorinput" type="color" onchange="changecolor(this.id)"></div></div>
                 </div>
                 <div class="colordiv">
                     <div class="colorname">Secondary</div>
-                    <div class="colorpicker"></div>
+                    <div class="colorpicker"><div><input id="secondary-color" class="colorinput" type="color" onchange="changecolor(this.id)"></div></div>
                 </div>
             </div>
             <div class="colordivtwice">
                  <div class="colordiv">
                     <div class="colorname">Tetriary</div>
-                    <div class="colorpicker"></div>
+                    <div class="colorpicker"><div><input id="tetriary-color" class="colorinput" type="color" onchange="changecolor(this.id)"></div></div>
                 </div>
                 
                 
                 <div class="colordiv">
-                    <button class="colorbtn">Reset</button>
+                    <button class="colorbtn" onclick="resetcolor()">Reset</button>
                 </div>
             </div>
             

@@ -436,6 +436,27 @@ function reset() {
   drawchart("any", true)
 }
 
+function changecolor(color) {
+  let inp = document.getElementById(color)
+  let newcolor = inp.value
+
+  console.log(color, newcolor)
+  document.documentElement.style.setProperty(`--${color}`, "" + newcolor)
+}
+
+function resetcolor() {
+  let colors = ["background", "text", "primary", "secondary", "tetriary"]
+  let colorvalues = ["#0A2647", "#ffffff", "#0F3460", "#0d284e", "#04173e"]
+
+  for (let i = 0; i < colors.length; i++) {
+    let inp = document.getElementById(colors[i] + "-color")
+    let colorval = colorvalues[i]
+
+    console.log(colors[i], colorval)
+    document.documentElement.style.setProperty(`--${colors[i]}-color`, "" + colorval)
+    inp.value = colorval
+  }
+}
 
 drawchart() 
 

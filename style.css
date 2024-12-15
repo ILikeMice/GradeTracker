@@ -1,6 +1,6 @@
 :root {
   --background-color: #0A2647;
-  --text-color: white;
+  --text-color: #ffffff;
   --primary-color:#0F3460;
   --secondary-color: #0d284e;
   --tetriary-color: #04173e;
@@ -419,6 +419,19 @@ body {
   
 }
 
+.colorpicker div {
+  height: 100%;
+  width: 100%;
+  
+
+  overflow: hidden;
+  background-color: transparent;
+
+  box-sizing: border-box;
+  border: 5px solid transparent;
+  border-radius:  15px ;
+}
+
 .colorbtn {
   width: 100%;
   margin-left: 2px;
@@ -441,10 +454,14 @@ body {
 
 .colorinput {
   background-color: transparent;
-  height: 90%;
-  width: 90%;
-  border: none;
-  border-radius: 10px;
+  
+
+  border: 0;
+  padding: 0;
+  width: 200%;
+  height: 200%;
+  cursor: pointer;
+  transform: translate(-25%, -25%)
 }
 
 @media (max-width: 600px) {
